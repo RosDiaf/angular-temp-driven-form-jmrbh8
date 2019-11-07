@@ -1,25 +1,53 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit(heroForm)" #heroForm="ngForm">
-    <div class="form-group">
-      <label>Firstname:</label>
-      <input type="text" name="firstname" class="form-control" ngModel>
+  <div class="row">
+    <div class="col-lg-12">
+      <h1>Template Driven Form</h1>
     </div>
-    <div class="form-group">
-      <label>Lastname:</label>
-      <input type="text" name="lastname" class="form-control" ngModel>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <form (ngSubmit)="onSubmit(heroForm)" #heroForm="ngForm">
+        <div class="form-group" 
+          [ngClass]="{
+              'has-danger': firstName.invalid && (firstName?.dirty || firstName?.touched),
+              'has-success': firstName.valid && (firstName?.dirty || firstName?.touched)
+          }">
+          <label>First Name:</label>
+          <input type="text" name="firstname" #firstName="ngModel" class="form-control" ngModel>
+          <div *ngIf="!firstName.value && (firstName.dirty || firstName.touched)">
+            User name is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Last Name:</label>
+          <input type="text" name="lastname" #lastName="ngModel" class="form-control" ngModel>
+          <div *ngIf="!lastName.value && (lastName.dirty || lastName.touched)">
+            Last name is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Street:</label>
+          <input type="text" name="street" #street="ngModel" class="form-control" ngModel>
+          <div *ngIf="!street.value && (street.dirty || street.touched)">
+            Street is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Zip:</label>
+          <input type="text" name="zip" #zip="ngModel" class="form-control" ngModel>
+          <div *ngIf="!zip.value && (zip.dirty || zip.touched)">
+            Zip is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label>City:</label>
+          <input type="text" name="city" #city="ngModel" class="form-control" ngModel>
+          <div *ngIf="!city.value && (city.dirty || city.touched)">
+            City is required!
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="heroForm.invalid">Submit</button>
+      </form>
     </div>
-    <div class="form-group">
-      <label>Street:</label>
-      <input type="text" name="street" class="form-control" ngModel>
-    </div>
-    <div class="form-group">
-      <label>Zip:</label>
-      <input type="text" name="zip" class="form-control" ngModel>
-    </div>
-    <div class="form-group">
-      <label>City:</label>
-      <input type="text" name="city" class="form-control" ngModel>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
 </div>
