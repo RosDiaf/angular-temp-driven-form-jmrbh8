@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'form',
+  selector: 'my-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
